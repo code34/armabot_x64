@@ -1,5 +1,5 @@
-# armabot_x64
-A simple Discord GO Bot for Arma
+# Armabot
+A simple Discord GOLANG Bot for Arma
 
 1 - create your webhook
 https://support.discordapp.com/hc/fr/articles/228383668-Utiliser-les-Webhooks
