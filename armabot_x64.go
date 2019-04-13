@@ -8,12 +8,12 @@ package main
 import "C"
 
 import (
-	"fmt"
-	"strings"
-	"unsafe"
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"net/http"
+	"strings"
+	"unsafe"
 )
 
 //export RVExtensionVersion
@@ -35,7 +35,7 @@ func RVExtensionArgs(output *C.char, outputsize C.size_t, input *C.char, argv **
 		out = append(out, C.GoString(*argv))
 		argv = (**C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(argv)) + offset))
 	}
-	temp := fmt.Sprintf("Function: %s nb params: %d params: %s!", C.GoString(input), argc,  out)
+	temp := fmt.Sprintf("Function: %s nb params: %d params: %s!", C.GoString(input), argc, out)
 
 	// Return a result to Arma
 	result := C.CString(temp)
@@ -67,13 +67,13 @@ https://discordapp.com/developers/docs/resources/webhook#get-webhook
 */
 func execWH(parameters []string) string {
 	type Query struct {
-		Varname string `json:"content"`
+		Varname  string `json:"content"`
 		Varvalue string `json:"username"`
 	}
 
 	url := parameters[0]
 	content := parameters[1]
-	username := parameters [2]
+	username := parameters[2]
 
 	u := Query{Varname: content, Varvalue: username}
 	b := new(bytes.Buffer)
@@ -82,9 +82,8 @@ func execWH(parameters []string) string {
 	_, err := http.Post(url, "application/json; charset=utf-8", b)
 	if err != nil {
 		return "false"
-	} else {
-		return "true"
 	}
+	return "true"
 }
 
 func main() {}
