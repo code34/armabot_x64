@@ -35,7 +35,7 @@ func RVExtensionArgs(output *C.char, outputsize C.size_t, input *C.char, argv **
 		out = append(out, C.GoString(*argv))
 		argv = (**C.char)(unsafe.Pointer(uintptr(unsafe.Pointer(argv)) + offset))
 	}
-	temp := fmt.Sprintf("Function: %s nb params: %d params: %s!", C.GoString(input), argc, out)
+	temp := fmt.Sprintf("Function: %v nb params: %v params: %v!", C.GoString(input), argc, out)
 
 	// Return a result to Arma
 	result := C.CString(temp)
